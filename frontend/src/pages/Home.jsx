@@ -8,12 +8,15 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('All')
 
-  useEffect(() => {
-    API.get('/jobs')
-      .then((res) => setJobs(Array.isArray(res.data) ? res.data : []))
-      .catch((err) => console.error('Failed to fetch jobs:', err))
-      .finally(() => setLoading(false))
-  }, [])
+useEffect(() => {
+  API.get('/jobs')
+    .then((res) => {
+      console.log("Jobs API Response:", res.data);
+      setJobs(Array.isArray(res.data) ? res.data : []);
+    })
+    .catch((err) => console.error('Failed to fetch jobs:', err))
+    .finally(() => setLoading(false));
+}, []);
 
   const departments = ['All', ...new Set(jobs.map((j) => j.department))]
   const filtered = filter === 'All' ? jobs : jobs.filter((j) => j.department === filter)
