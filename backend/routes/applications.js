@@ -32,6 +32,7 @@ const upload = multer({
 
 // POST - Submit application
 router.post("/", upload.single("resume"), async (req, res) => {
+  console.log('[applications] received POST /, body:', req.body, 'file:', req.file && req.file.originalname);
   try {
     const { job_id, applicant_name, applicant_email, applicant_phone, cover_letter } = req.body;
 

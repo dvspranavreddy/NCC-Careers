@@ -26,6 +26,7 @@ transporter.verify((error, success) => {
  * @returns {boolean} true on success, false on failure
  */
 async function sendEmail(to, subject, htmlBody) {
+  console.log('[emailService] sendEmail called', { to, subject });
   try {
     const info = await transporter.sendMail({
       from: `"HR Team" <${process.env.EMAIL_USER}>`,
@@ -33,10 +34,10 @@ async function sendEmail(to, subject, htmlBody) {
       subject,
       html: htmlBody,
     });
-    console.log('Email sent:', info.messageId);
+    console.log('[emailService] Email sent:', info.messageId);
     return true;
   } catch (err) {
-    console.error('Email failed:', err.message);
+    console.error('[emailService] Email failed:', err.message);
     return false;
   }
 }
@@ -45,6 +46,7 @@ async function sendEmail(to, subject, htmlBody) {
  * Send the standard confirmation that an application was received.
  */
 async function sendApplicationEmail(application) {
+  console.log('[emailService] sendApplicationEmail called', application);
   const {
     applicant_name,
     applicant_email,
@@ -102,6 +104,7 @@ async function sendApplicationEmail(application) {
  * Send a simple status update message depending on type.
  */
 async function sendStatusEmail(application, statusType) {
+  console.log('[emailService] sendStatusEmail called', { application, statusType });
   const { applicant_name, applicant_email, job_title } = application;
   let subject = '';
   let body = '';
