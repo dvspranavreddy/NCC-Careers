@@ -40,6 +40,14 @@ Below are screenshots demonstrating the interface and the application flow:
 ### 2. Application Submission
 <img src = "./gmail-shortlist&accepted.jpeg" witdth="500" height="600">
 
+### 2. Application Submission
+<img src = "./gmail-shortlist&accepted.jpeg" witdth="500" height="600">
+
+### 2. admin managing job
+<img src = "./gmail-shortlist&accepted.jpeg" witdth="500" height="600">
+
+### 2. admin creating job
+<img src = "./gmail-shortlist&accepted.jpeg" witdth="500" height="600">
 ---
 
 ## 🛠️ Development Setup
