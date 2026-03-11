@@ -35,10 +35,10 @@ The backend uses **Gmail SMTP** to send application confirmations and status upd
 Below are screenshots demonstrating the interface and the application flow:
 
 ### 1. Main Dashboard
-![UI Preview 1](link_to_your_image_1)
+![Using Gmail Application](./gmailapplication.jpeg)
 
 ### 2. Application Submission
-![UI Preview 2](link_to_your_image_2)
+![Using Gmail shortlisted and accepted](./gmail-shortlist&accepted.jpeg)
 
 ---
 
