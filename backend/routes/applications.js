@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const pool = require("../db");
-const { sendApplicationEmail } = require("../email");
+const { sendApplicationEmail } = require("../services/emailService");
 
 // Configure multer for resume uploads
 const storage = multer.diskStorage({
@@ -72,24 +72,30 @@ router.post("/", upload.single("resume"), async (req, res) => {
       [job_id, applicant_name, applicant_email, applicant_phone, resumePath, cover_letter || null]
     );
 
-    // Send confirmation email
-    try {
-      await sendApplicationEmail({
-        applicant_name,
-        applicant_email,
-        applicant_phone,
-        cover_letter,
-        job_title,
-      });
-    } catch (emailErr) {
-      console.error("Email sending failed:", emailErr.message);
-      // Don't fail the application submission if email fails
-    }
-
+    // Respond to the client immediately, then send the email in background
     res.status(201).json({
       message: "Application submitted successfully",
       application: result.rows[0],
     });
+
+    // background email - we don't wait for it so UI is snappy
+    (async () => {
+      try {
+        const ok = await sendApplicationEmail({
+          applicant_name,
+          applicant_email,
+          applicant_phone,
+          cover_letter,
+          job_title,
+        });
+        console.log("[applications] confirmation email sent?", ok);
+        if (ok) {
+          await pool.query("UPDATE applications SET email_sent = TRUE WHERE id = $1", [result.rows[0].id]);
+        }
+      } catch (emailErr) {
+        console.error("Email sending failed (background):", emailErr);
+      }
+    })();
   } catch (err) {
     console.error("Error submitting application:", err);
     res.status(500).json({ error: "Failed to submit application" });

@@ -940,9 +940,23 @@ textarea.form-control {
 }
 
 .status-badge.pending { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
-.status-badge.reviewed { background: rgba(37, 99, 235, 0.1); color: var(--info); }
+.status-badge.reviewed, .status-badge.under_review { background: rgba(37, 99, 235, 0.1); color: var(--info); }
 .status-badge.shortlisted { background: rgba(22, 163, 74, 0.1); color: var(--success); }
+.status-badge.accepted { background: rgba(22, 163, 74, 0.2); color: var(--success); }
 .status-badge.rejected { background: rgba(220, 38, 38, 0.1); color: var(--danger); }
+
+/* view detail button styling */
+.view-detail-btn {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  border: 1px solid var(--info);
+  background: rgba(37, 99, 235, 0.05);
+  color: var(--info);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.view-detail-btn:hover { opacity: 0.85; }
 
 .action-btns {
   display: flex;
@@ -966,6 +980,7 @@ textarea.form-control {
 .action-btn.review { background: rgba(37, 99, 235, 0.1); color: var(--info); }
 .action-btn.shortlist { background: rgba(22, 163, 74, 0.1); color: var(--success); }
 .action-btn.reject { background: rgba(220, 38, 38, 0.1); color: var(--danger); }
+.action-btn.accept { background: rgba(22, 163, 74, 0.1); color: var(--success); }
 .action-btn.delete { background: rgba(220, 38, 38, 0.05); color: var(--danger); }
 
 .empty-state {
@@ -979,6 +994,41 @@ textarea.form-control {
   margin-bottom: 16px;
   opacity: 0.3;
 }
+
+/* modal for application detail */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: var(--bg-card);
+  padding: 24px;
+  border-radius: var(--radius);
+  max-width: 500px;
+  width: 90%;
+  box-shadow: var(--shadow);
+}
+.modal-content h3 {
+  margin-top: 0;
+}
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
 
 /* Footer */
 .footer {
@@ -1084,7 +1134,7 @@ textarea.form-control {
 .about-hero {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 60%, var(--primary) 100%);
   color: white;
-  padding: 60px 24px;
+  padding: 52px 24px;
   text-align: center;
   position: relative;
   overflow: hidden;

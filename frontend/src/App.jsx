@@ -7,6 +7,7 @@ import JobDetail from './pages/JobDetail'
 import Apply from './pages/Apply'
 import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
+import AdminRoute from './components/AdminRoute'
 import AboutUs from './pages/AboutUs'
 
 function App() {
@@ -21,7 +22,14 @@ function App() {
           <Route path="/apply/:jobSlug" element={<Apply />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            }
+          />
         </Routes>
       </main>
       <Footer />

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { HiLockClosed } from 'react-icons/hi'
 import API from '../api'
@@ -9,6 +9,15 @@ export default function AdminLogin() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+
+  // if a token is already present we don't want to show the login form
+  // again; just redirect the user straight to the dashboard.
+  useEffect(() => {
+    const token = localStorage.getItem('adminToken')
+    if (token) {
+      navigate('/admin/dashboard')
+    }
+  }, [navigate])
 
   const handleSubmit = async (e) => {
     e.preventDefault()

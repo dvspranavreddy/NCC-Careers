@@ -47,6 +47,8 @@ async function seed() {
         resume_path VARCHAR(500),
         cover_letter TEXT,
         status VARCHAR(20) DEFAULT 'pending',
+        view_detail_clicked BOOLEAN DEFAULT false,
+        email_sent BOOLEAN DEFAULT false,
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW(),
         UNIQUE (job_id, applicant_email)
@@ -63,6 +65,29 @@ async function seed() {
           ALTER TABLE applications ADD CONSTRAINT applications_job_id_applicant_email_key UNIQUE (job_id, applicant_email);
         END IF;
       END $$;
+    `);
+
+    // Add view_detail_clicked and email_sent columns to existing table if not present (for migrations)
+    await pool.query(`
+      DO $$ BEGIN
+        IF NOT EXISTS (
+          SELECT 1 FROM information_schema.columns
+          WHERE table_name = 'applications' AND column_name = 'view_detail_clicked'
+        ) THEN
+          ALTER TABLE applications ADD COLUMN view_detail_clicked BOOLEAN DEFAULT false;
+        END IF;
+        IF NOT EXISTS (
+          SELECT 1 FROM information_schema.columns
+          WHERE table_name = 'applications' AND column_name = 'email_sent'
+        ) THEN
+          ALTER TABLE applications ADD COLUMN email_sent BOOLEAN DEFAULT false;
+        END IF;
+      END $$;
+    `);
+
+    // migrate any old "reviewed" statuses to new "under_review"
+    await pool.query(`
+      UPDATE applications SET status = 'under_review' WHERE status = 'reviewed';
     `);
 
     await pool.query(`
