@@ -1038,13 +1038,30 @@ textarea.form-control {
   margin-top: 40px;
 }
 
+/* make everything inside footer bold, except headings */
+.footer * {
+  font-weight: 600;
+}
+/* headings inside footer should also be orange and bold */
+.footer h3 {
+  font-weight: 600;
+  color: var(--accent);
+}
+
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* three columns: left text narrower, then links and contacts */
+  grid-template-columns: 2fr 1fr 1fr;
   gap: 24px;
   margin-bottom: 16px;
+}
+
+.footer-text {
+  /* constrain text width and slightly smaller font for balance */
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .footer-links ul {
@@ -1056,15 +1073,33 @@ textarea.form-control {
   margin-bottom: 8px;
 }
 
+/* contacts under footer-links should match quick-link appearance */
+.footer-links ul.contact li {
+  font-size: 0.85rem;
+  color: var(--bg-card);
+}
+
+.footer-links ul.contact li a {
+  color: var(--bg-card);
+}
+
 .footer-links ul li a,
 .footer-links ul li span {
-  color: rgba(255, 255, 255, 0.8);
+  color: white; /* quick link text white by default */
   font-size: 0.85rem;
   font-weight: 400;
-  transition: var(--transition);
+  transition: var(--transition) transform 0.2s;
   text-decoration: none;
 }
 
+.footer-links ul li a:hover {
+  color: var(--accent); /* orange on hover */
+  transform: scale(1.05);
+}
+/* orange text helper */
+.orange {
+  color: var(--accent);
+}
 .footer-links ul li a:hover {
   color: white;
   text-decoration: underline;

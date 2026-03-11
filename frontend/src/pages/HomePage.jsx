@@ -49,32 +49,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Share Price Ticker */}
-      {/* <div className="hp-ticker">
-        <div className="hp-ticker-inner">
-          <div className="hp-ticker-item">
-            <span className="hp-ticker-label">Share price</span>
-            <span className="hp-ticker-value">
-              131.60p <HiTrendingDown style={{ color: '#ef4444', display: 'inline', verticalAlign: 'middle' }} />
-            </span>
-          </div>
-          <div className="hp-ticker-divider" />
-          <div className="hp-ticker-item">
-            <span className="hp-ticker-label">Last updated</span>
-            <span className="hp-ticker-value">10 March 2026 at 11:48am</span>
-          </div>
-          <a
-            href="https://www.nccgroupplc.com/investor-relations/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-accent btn-sm"
-            style={{ marginLeft: 'auto' }}
-          >
-            Check share centre
-          </a>
-        </div>
-      </div> */}
-
       {/* Global Team Section */}
       <section className="hp-section">
         <div className="hp-container">

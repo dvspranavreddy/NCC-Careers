@@ -4,28 +4,49 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-content">
+        {/* left column - brief slogan/description */}
+        <div className="footer-text">
+          <p>Committed to a brighter <span className="orange">world...</span></p>
+          <p>Diligence can accomplish <span className="orange">wonders!</span></p>
+          <p>
+            For over four decades, we never sidetracked from this belief and have
+            <span className="orange"> leapfrogged</span> from being just a construction industry player to a billion
+            dollar <span className="orange"> multifunctional</span> infrastructure <span className="orange">conglomerate.</span>
+          </p>
+        </div>
+
+        {/* center column - quick links */}
         <div className="footer-links">
+          <h3>Quick Links</h3>
           <ul>
-            <li><a href="https://www.nccgroupplc.com/investor-relations/" target="_blank" rel="noopener noreferrer">Investor Relations</a></li>
-            <li><Link to="/careers">Careers</Link></li>
-            <li><a href="https://www.nccgroup.com/newsroom/" target="_blank" rel="noopener noreferrer">Newsroom</a></li>
-            <li><Link to="/about#offices" onClick={() => setTimeout(() => document.getElementById('offices')?.scrollIntoView({ behavior: 'smooth' }), 100)}>Our Office Locations</Link></li>
-            <li><a href="https://www.nccgroupplc.com/contact-us/">Contact Us</a></li>
-            <li><a href="https://www.nccgroupplc.com/emergency-cyber-incident-hotline/">Emergency Cyber Incident Hotline</a></li>
+            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="https://ncclimited.com/buildings-housing.html">Expertise</Link></li>
+            <li><Link to="https://ncclimited.com/quality-safety.html">Commitment</Link></li>
+            <li><Link to="/https://ncclimited.com/10-years-performance.html">Investors</Link></li>
+            <li><Link to="https://ncclimited.com/timeline.html">Landmarks</Link></li>
+            <li><Link to="https://ncclimited.com/in-the-news.html">Media</Link></li>
+            <li><a href="https://ncclimited.com/opportunities-at-ncc.html" target="_blank" rel="noopener noreferrer">Human Capital</a></li>
+            {/* contact link removed from here per request */}
           </ul>
         </div>
+
+        {/* right column - contacts */}
         <div className="footer-links">
-          <ul>
-            <li><a href="https://www.nccgroupplc.com/terms-conditions/" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a></li>
-            <li><a href="https://www.nccgroupplc.com/privacy-notice/" target="_blank" rel="noopener noreferrer">Privacy Notice</a></li>
-            <li><a href="https://www.nccgroupplc.com/privacy-notice/cookie-policy/" target="_blank" rel="noopener noreferrer">Cookie Policy</a></li>
-            <li><a href="/candidate-privacy-notice.pdf" target="_blank" rel="noopener noreferrer">Candidate Privacy Notice</a></li>
+          <h3>Contact</h3>
+          <ul className="contact">
+            <li>NCC House, Madhapur<br/>
+                Hyderabad - 500081<br/>
+                Telangana, India
+            </li>
+            <li>+91 40 2326 8888</li>
+            <li><a href="mailto:info@nccltd.in">info@nccltd.in</a></li>
           </ul>
         </div>
       </div>
+
       <div className="footer-bottom">
-        <span>&copy; {new Date().getFullYear()} NCC Limited. All rights reserved.</span>
-        <span>Built with care for a better tomorrow.</span>
+        <span className="orange">&copy; {new Date().getFullYear()} NCC Limited. All rights reserved.</span>
+        <span className="orange">Built with care for a better tomorrow.</span>
       </div>
     </footer>
   )

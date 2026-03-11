@@ -36,7 +36,7 @@ export default function Home() {
               <div className="label">Open Positions</div>
             </div>
             <div className="hero-stat">
-              <div className="number">50+</div>
+              <div className="number">45+</div>
               <div className="label">Years of Excellence</div>
             </div>
             <div className="hero-stat">
