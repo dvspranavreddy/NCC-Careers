@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API = axios.create({
-  baseURL: 'https://ncc-careers.onrender.com/api',
+  baseURL: '/api',
 })
 
 API.interceptors.request.use((config) => {

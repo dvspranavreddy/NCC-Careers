@@ -195,6 +195,128 @@ router.delete("/applications/:id", authMiddleware, async (req, res) => {
   }
 });
 
+// ─── JOB MANAGEMENT ─────────────────────────────────────────
+
+// Helper: generate slug from title
+function toSlug(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
+// GET - All jobs (protected, includes inactive)
+router.get("/jobs", authMiddleware, async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM jobs ORDER BY created_at DESC");
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error fetching jobs:", err);
+    res.status(500).json({ error: "Failed to fetch jobs" });
+  }
+});
+
+// POST - Create new job (protected)
+router.post("/jobs", authMiddleware, async (req, res) => {
+  try {
+    const { title, department, location, type, experience, salary_range, description, requirements, responsibilities } = req.body;
+
+    if (!title || !department || !location || !type || !experience || !description) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const slug = toSlug(title);
+
+    // Check slug uniqueness
+    const existing = await pool.query("SELECT id FROM jobs WHERE slug = $1", [slug]);
+    if (existing.rows.length > 0) {
+      return res.status(409).json({ error: "A job with a similar title already exists" });
+    }
+
+    const result = await pool.query(
+      `INSERT INTO jobs (title, slug, department, location, type, experience, salary_range, description, requirements, responsibilities)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+       RETURNING *`,
+      [title, slug, department, location, type, experience, salary_range || null, description, requirements || [], responsibilities || []]
+    );
+
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.error("Error creating job:", err);
+    res.status(500).json({ error: "Failed to create job" });
+  }
+});
+
+// PATCH - Update job (protected)
+router.patch("/jobs/:id", authMiddleware, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, department, location, type, experience, salary_range, description, requirements, responsibilities, is_active } = req.body;
+
+    const existing = await pool.query("SELECT * FROM jobs WHERE id = $1", [id]);
+    if (existing.rows.length === 0) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+
+    const job = existing.rows[0];
+    const newTitle = title !== undefined ? title : job.title;
+    const newSlug = title !== undefined ? toSlug(title) : job.slug;
+
+    // Check slug uniqueness if title changed
+    if (title !== undefined && newSlug !== job.slug) {
+      const slugCheck = await pool.query("SELECT id FROM jobs WHERE slug = $1 AND id != $2", [newSlug, id]);
+      if (slugCheck.rows.length > 0) {
+        return res.status(409).json({ error: "A job with a similar title already exists" });
+      }
+    }
+
+    const result = await pool.query(
+      `UPDATE jobs SET
+        title = $1, slug = $2, department = $3, location = $4, type = $5,
+        experience = $6, salary_range = $7, description = $8,
+        requirements = $9, responsibilities = $10, is_active = $11, updated_at = NOW()
+       WHERE id = $12
+       RETURNING *`,
+      [
+        newTitle, newSlug,
+        department !== undefined ? department : job.department,
+        location !== undefined ? location : job.location,
+        type !== undefined ? type : job.type,
+        experience !== undefined ? experience : job.experience,
+        salary_range !== undefined ? salary_range : job.salary_range,
+        description !== undefined ? description : job.description,
+        requirements !== undefined ? requirements : job.requirements,
+        responsibilities !== undefined ? responsibilities : job.responsibilities,
+        is_active !== undefined ? is_active : job.is_active,
+        id
+      ]
+    );
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error("Error updating job:", err);
+    res.status(500).json({ error: "Failed to update job" });
+  }
+});
+
+// DELETE - Delete job (protected)
+router.delete("/jobs/:id", authMiddleware, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await pool.query("DELETE FROM jobs WHERE id = $1 RETURNING *", [id]);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+    res.json({ message: "Job deleted" });
+  } catch (err) {
+    console.error("Error deleting job:", err);
+    res.status(500).json({ error: "Failed to delete job" });
+  }
+});
+
+// ─── STATS ──────────────────────────────────────────────────
+
 // GET - Dashboard stats (protected)
 router.get("/stats", authMiddleware, async (req, res) => {
   try {

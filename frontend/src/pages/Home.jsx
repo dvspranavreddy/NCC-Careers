@@ -24,11 +24,11 @@ export default function Home() {
       <section className="hero">
         <div className="hero-content">
           <h1>
-            Build Your Future with <span>NCC</span>
+            Build Your Future with <span>NCC Urban</span>
           </h1>
           <p>
-            Join one of India's leading infrastructure companies. Explore exciting
-            career opportunities and grow with a team that builds tomorrow.
+            Join one of India's most trusted real estate companies. Explore exciting
+            career opportunities and grow with a team that builds premium living spaces.
           </p>
           <div className="hero-stats">
             <div className="hero-stat">
@@ -51,7 +51,7 @@ export default function Home() {
       <section className="section">
         <div className="section-header">
           <h2>Current Openings</h2>
-          <p>Discover roles that match your skills and aspirations. We're always looking for talented individuals to join the NCC family.</p>
+          <p>Discover roles that match your skills and aspirations. We're always looking for talented individuals to join the NCC Urban family.</p>
         </div>
 
         {/* Filters */}

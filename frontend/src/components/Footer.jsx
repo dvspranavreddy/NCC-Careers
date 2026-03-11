@@ -6,12 +6,12 @@ export default function Footer() {
       <div className="footer-content">
         {/* left column - brief slogan/description */}
         <div className="footer-text">
-          <p>Committed to a brighter <span className="orange">world...</span></p>
-          <p>Diligence can accomplish <span className="orange">wonders!</span></p>
+          <p>Trusted Brand With 4 Decades Of <span className="orange">Legacy</span></p>
+          <p>Building spaces where life <span className="orange">thrives!</span></p>
           <p>
-            For over four decades, we never sidetracked from this belief and have
-            <span className="orange"> leapfrogged</span> from being just a construction industry player to a billion
-            dollar <span className="orange"> multifunctional</span> infrastructure <span className="orange">conglomerate.</span>
+            NCC Urban Infrastructure Ltd., a subsidiary of <span className="orange">NCC Limited</span>, delivers
+            premium residential &amp; commercial spaces with <span className="orange">world-class</span> building
+            techniques across <span className="orange">India.</span>
           </p>
         </div>
 
@@ -20,12 +20,12 @@ export default function Footer() {
           <h3>Quick Links</h3>
           <ul>
             <li><Link to="/about">About Us</Link></li>
-            <li><Link to="https://ncclimited.com/buildings-housing.html">Expertise</Link></li>
-            <li><Link to="https://ncclimited.com/quality-safety.html">Commitment</Link></li>
-            <li><Link to="/https://ncclimited.com/10-years-performance.html">Investors</Link></li>
-            <li><Link to="https://ncclimited.com/timeline.html">Landmarks</Link></li>
-            <li><Link to="https://ncclimited.com/in-the-news.html">Media</Link></li>
-            <li><a href="https://ncclimited.com/opportunities-at-ncc.html" target="_blank" rel="noopener noreferrer">Human Capital</a></li>
+            <li><a href="https://www.nccurban.com/ongoing-projects-in-hyderabad.html" target="_blank" rel="noopener noreferrer">Our Projects</a></li>
+            <li><a href="https://www.nccurban.com/testimonial.html" target="_blank" rel="noopener noreferrer">Testimonials</a></li>
+            <li><a href="https://www.nccurban.com/interior.html" target="_blank" rel="noopener noreferrer">Interiors</a></li>
+            <li><Link to="/careers">Careers</Link></li>
+            <li><a href="https://www.nccurban.com/faq.html" target="_blank" rel="noopener noreferrer">FAQ</a></li>
+            <li><a href="https://www.nccurban.com/contactus.php" target="_blank" rel="noopener noreferrer">Contact</a></li>
             {/* contact link removed from here per request */}
           </ul>
         </div>
@@ -34,19 +34,19 @@ export default function Footer() {
         <div className="footer-links">
           <h3>Contact</h3>
           <ul className="contact">
-            <li>NCC House, Madhapur<br/>
-                Hyderabad - 500081<br/>
-                Telangana, India
+            <li>NCC Urban Infrastructure Ltd.<br/>
+                NCC House, Madhapur<br/>
+                Hyderabad - 500081, Telangana
             </li>
             <li>+91 40 2326 8888</li>
-            <li><a href="mailto:info@nccltd.in">info@nccltd.in</a></li>
+            <li><a href="mailto:info@nccurban.com">info@nccurban.com</a></li>
           </ul>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <span className="orange">&copy; {new Date().getFullYear()} NCC Limited. All rights reserved.</span>
-        <span className="orange">Built with care for a better tomorrow.</span>
+        <span className="orange">&copy; {new Date().getFullYear()} NCC Urban Infrastructure Limited. All rights reserved.</span>
+        <span className="orange">A Subsidiary of NCC Limited.</span>
       </div>
     </footer>
   )

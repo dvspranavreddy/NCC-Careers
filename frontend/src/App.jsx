@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -9,8 +10,17 @@ import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
 import AdminRoute from './components/AdminRoute'
 import AboutUs from './pages/AboutUs'
+import Gate from './pages/Gate'
 
 function App() {
+  const [unlocked, setUnlocked] = useState(
+    () => sessionStorage.getItem('site_unlocked') === 'true'
+  )
+
+  if (!unlocked) {
+    return <Gate onUnlock={() => setUnlocked(true)} />
+  }
+
   return (
     <div className="app">
       <Navbar />

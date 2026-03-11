@@ -30,7 +30,12 @@ export default function JobDetail() {
           <span className="tag">{job.experience}</span>
         </div>
         <h1>{job.title}</h1>
-        {job.salary_range && <div className="job-detail-salary">{job.salary_range}</div>}
+        <div className="job-detail-header-row">
+          {job.salary_range && <div className="job-detail-salary">{job.salary_range}</div>}
+          <Link to={`/apply/${job.slug}`} className="btn btn-accent">
+            Apply Now
+          </Link>
+        </div>
       </div>
 
       <div className="job-detail-section">
