@@ -10,7 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     API.get('/jobs')
-      .then((res) => setJobs(res.data))
+      .then((res) => setJobs(Array.isArray(res.data) ? res.data : []))
       .catch((err) => console.error('Failed to fetch jobs:', err))
       .finally(() => setLoading(false))
   }, [])
