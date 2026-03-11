@@ -1,25 +1,13 @@
-const nodemailer = require('nodemailer');
+const postmark = require('postmark');
 require('dotenv').config();
 
-// create transporter using Gmail SMTP (works with app passwords)
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false, // starttls
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false,
-  },
-});
+const client = new postmark.ServerClient(process.env.POSTMARK_SERVER_TOKEN);
+const FROM_EMAIL = process.env.EMAIL_FROM;
 
 // verify connection at startup
-transporter.verify((error, success) => {
-  if (error) console.error('SMTP connection failed:', error);
-  else console.log('Mail server ready');
-});
+client.getServer()
+  .then(() => console.log('Postmark mail server ready'))
+  .catch((err) => console.error('Postmark connection failed:', err.message));
 
 /**
  * Generic helper which sends a simple HTML email.
@@ -28,13 +16,14 @@ transporter.verify((error, success) => {
 async function sendEmail(to, subject, htmlBody) {
   console.log('[emailService] sendEmail called', { to, subject });
   try {
-    const info = await transporter.sendMail({
-      from: `"HR Team" <${process.env.EMAIL_USER}>`,
-      to,
-      subject,
-      html: htmlBody,
+    const result = await client.sendEmail({
+      From: FROM_EMAIL,
+      To: to,
+      Subject: subject,
+      HtmlBody: htmlBody,
+      MessageStream: 'outbound',
     });
-    console.log('[emailService] Email sent:', info.messageId);
+    console.log('[emailService] Email sent:', result.MessageID);
     return true;
   } catch (err) {
     console.error('[emailService] Email failed:', err.message);
@@ -95,7 +84,7 @@ async function sendApplicationEmail(application) {
   const ok = await sendEmail(applicant_email, `Application Received – ${job_title}`, htmlBody);
   // also send copy to admin
   if (ok) {
-    await sendEmail(process.env.EMAIL_USER, `[COPY] Application Received – ${job_title}`, htmlBody);
+    await sendEmail(FROM_EMAIL, `[COPY] Application Received – ${job_title}`, htmlBody);
   }
   return ok;
 }
