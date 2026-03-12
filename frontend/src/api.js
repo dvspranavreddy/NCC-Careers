@@ -10,7 +10,7 @@ const getBackendURL = () => {
 }
 
 const API = axios.create({
-  baseURL: `${getBackendURL()}/api`,
+  baseURL: import.meta.env.VITE_API_URL || '/api',
 })
 
 API.interceptors.request.use((config) => {

@@ -1,5 +1,6 @@
-# NCC-Careers
+# NCC Careers Task
 
+<<<<<<< HEAD
 ## Application Flow
 
 ### Public User Flow
@@ -61,5 +62,67 @@ If running locally, you can use Gmail SMTP:
    - Enable 2‑Step Verification on the Google account.
    - Create an "App Password" from the security settings (choose "Mail" → "Other").
 3. Restart the backend; the transporter connection is verified on startup (`Mail server ready` in logs).
+=======
+A streamlined recruitment application designed to manage job submissions and automated candidate communication.
 
-Other environment variables are described in the example file.
+---
+
+## 📧 Email Configuration
+>>>>>>> 86ac849cfd223b2d0b94b645d718bce1f29a783f
+
+The backend uses **Gmail SMTP** to send application confirmations and status updates. To ensure the mailer functions correctly in your development environment, follow these steps:
+
+1.  **Environment Setup**: Clone `.env.example` to a new file named `.env` (this file is ignored by git for security).
+2.  **Account Security**: Enable **2-Step Verification** on your Google account.
+3.  **Generate App Password**: 
+    * Go to your Google Security settings.
+    * Create an **"App Password"**.
+    * Choose **"Mail"** -> **"Other"**.
+4.  **Set Variables**: 
+    * Set `EMAIL_USER` to your Gmail address.
+    * Set `EMAIL_PASS` to the **16-character app password** (do not use your regular login password).
+5.  **Verify**: Restart the backend. The connection is verified on startup; look for `Mail server ready` in the logs.
+
+---
+
+## ⚠️ Important: SMTP Block on Render
+
+> [!CAUTION]  
+> **Note on Deployment:** You may notice that emails are not being sent from the live URL. 
+> 
+> **Reason:** **Render** (the hosting provider) frequently blocks outbound traffic on SMTP ports (25, 465, and 587) to prevent spam abuse. While the code is technically correct and functional in a local environment, Render's network firewall prevents the backend from reaching Google's mail servers.
+
+---
+
+## 📸 Application Preview
+
+Below are screenshots demonstrating the interface and the application flow:
+
+### 1. Main Dashboard
+<img src = "./gmailapplication.jpeg" witdth="500" height="600">
+
+### 2. Application Submission
+<img src = "./gmail-shortlist&accepted.jpeg" witdth="500" height="600">
+
+### 3. admin managing job
+<img src = "./admin-1.png" witdth="500" height="600">
+
+### 4. admin creating job
+<img src = "./admin-2.png" witdth="500" height="600">
+---
+
+## 🛠️ Development Setup
+
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Configure Environment**:
+Follow the Email Configuration section above.
+
+3. **Run Application:**
+  ```bash
+   npm run dev
+   ```
+   
+   
