@@ -98,16 +98,19 @@ The backend uses **Gmail SMTP** to send application confirmations and status upd
 
 Below are screenshots demonstrating the interface and the application flow:
 
-### 1. Main Dashboard
+### 1. Application applied
 <img src = "./gmailapplication.jpeg" witdth="500" height="600">
 
-### 2. Application Submission
+### 2. Application shortlisted
 <img src = "./gmail-shortlist&accepted.jpeg" witdth="500" height="600">
 
-### 3. admin managing job
+### 3. Total gmails 
+<img src = "./gmail-shortlist&accepted.jpeg" witdth="500" height="600">
+
+### 4. admin managing job
 <img src = "./admin-1.png" witdth="500" height="600">
 
-### 4. admin creating job
+### 5. admin creating job
 <img src = "./admin-2.png" witdth="500" height="600">
 ---
 
