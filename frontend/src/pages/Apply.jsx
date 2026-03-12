@@ -58,9 +58,9 @@ export default function Apply() {
       return
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[^\s@]+@student\.nitw\.ac\.in$/
     if (!emailRegex.test(form.applicant_email)) {
-      setError('Please enter a valid email address')
+      setError('Please use your @student.nitw.ac.in email address')
       return
     }
 

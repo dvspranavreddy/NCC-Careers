@@ -1,7 +1,16 @@
 import axios from 'axios'
 
+// Determine the backend base URL
+const getBackendURL = () => {
+  if (import.meta.env.MODE === 'development') {
+    return 'http://localhost:5001'
+  }
+  // In production, use the same origin (backend should be on same domain or set via env)
+  return import.meta.env.VITE_API_URL || window.location.origin
+}
+
 const API = axios.create({
-  baseURL: '/api',
+  baseURL: `${getBackendURL()}/api`,
 })
 
 API.interceptors.request.use((config) => {

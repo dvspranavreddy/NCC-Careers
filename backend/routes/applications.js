@@ -40,10 +40,10 @@ router.post("/", upload.single("resume"), async (req, res) => {
       return res.status(400).json({ error: "All required fields must be provided" });
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Validate email format - only allow @student.nitw.ac.in
+    const emailRegex = /^[^\s@]+@student\.nitw\.ac\.in$/;
     if (!emailRegex.test(applicant_email)) {
-      return res.status(400).json({ error: "Invalid email format" });
+      return res.status(400).json({ error: "Only @student.nitw.ac.in email addresses are allowed" });
     }
 
     const resumePath = req.file ? req.file.filename : null;

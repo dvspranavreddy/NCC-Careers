@@ -254,12 +254,12 @@ export default function AdminDashboard() {
       {/* Stats */}
       {stats && (
         <div className="stats-grid">
-          <div className="stat-card"><div className="stat-icon blue"><HiDocumentText /></div><div className="stat-details"><h3>{stats.totalApplications}</h3><p>Total Applications</p></div></div>
-          <div className="stat-card"><div className="stat-icon orange"><HiClock /></div><div className="stat-details"><h3>{stats.pendingApplications}</h3><p>Pending Review</p></div></div>
-          <div className="stat-card"><div className="stat-icon blue"><HiClock /></div><div className="stat-details"><h3>{stats.underReviewApplications}</h3><p>Under Review</p></div></div>
-          <div className="stat-card"><div className="stat-icon green"><HiStar /></div><div className="stat-details"><h3>{stats.shortlistedApplications}</h3><p>Shortlisted</p></div></div>
-          <div className="stat-card"><div className="stat-icon green"><HiBriefcase /></div><div className="stat-details"><h3>{stats.acceptedApplications}</h3><p>Accepted</p></div></div>
-          <div className="stat-card"><div className="stat-icon purple"><HiBriefcase /></div><div className="stat-details"><h3>{stats.activeJobs}</h3><p>Active Jobs</p></div></div>
+          <div className="stat-card blue"><div className="stat-icon blue"><HiDocumentText /></div><div className="stat-details"><h3>{stats.totalApplications}</h3><p>Total Applications</p></div></div>
+          <div className="stat-card orange"><div className="stat-icon orange"><HiClock /></div><div className="stat-details"><h3>{stats.pendingApplications}</h3><p>Pending Review</p></div></div>
+          <div className="stat-card blue"><div className="stat-icon blue"><HiClock /></div><div className="stat-details"><h3>{stats.underReviewApplications}</h3><p>Under Review</p></div></div>
+          <div className="stat-card green"><div className="stat-icon green"><HiStar /></div><div className="stat-details"><h3>{stats.shortlistedApplications}</h3><p>Shortlisted</p></div></div>
+          <div className="stat-card green"><div className="stat-icon green"><HiBriefcase /></div><div className="stat-details"><h3>{stats.acceptedApplications}</h3><p>Accepted</p></div></div>
+          <div className="stat-card purple"><div className="stat-icon purple"><HiBriefcase /></div><div className="stat-details"><h3>{stats.activeJobs}</h3><p>Active Jobs</p></div></div>
         </div>
       )}
 
@@ -319,7 +319,7 @@ export default function AdminDashboard() {
                           View Detail
                         </button>
                       </td>
-                      <td style={{ textAlign: 'center' }}>{app.email_sent ? '✅' : '–'}</td>
+                      <td style={{ textAlign: 'center' }}>{app.email_sent ? 'sent' : '-'}</td>
                       <td>{app.job_title}</td>
                       <td>{app.department}</td>
                       <td style={{ whiteSpace: 'nowrap' }}>{new Date(app.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
@@ -425,7 +425,7 @@ export default function AdminDashboard() {
                 </div>
                 <div className="modal-detail-item">
                   <span className="modal-detail-label">Email Sent</span>
-                  <span className="modal-detail-value">{selectedApp.email_sent ? 'Yes ✅' : 'No'}</span>
+                  <span className="modal-detail-value">{selectedApp.email_sent ? 'sent' : '-'}</span>
                 </div>
               </div>
 
