@@ -102,7 +102,7 @@ Below are screenshots demonstrating the interface and the application flow:
 <img src = "./gmailapplication.jpeg" witdth="500" height="600">
 
 ### 2. Application shortlisted
-<img src = "./gmail-shortlist&accepted.jpeg" witdth="500" height="600">
+<img src = "./IMG_4033.png" witdth="500" height="600">
 
 ### 3. Total gmails 
 <img src = "./gmail-shortlist&accepted.jpeg" witdth="500" height="600">
