@@ -102,6 +102,7 @@ Below are screenshots demonstrating the interface and the application flow:
 <img src = "./gmailapplication.jpeg" witdth="500" height="600">
 
 ### 2. Total gmails
+for every status we pressed the email gets trigerred and sends email
 <img src = "./IMG_4033.png" witdth="500" height="600">
 
 ### 3. Application Shortlisted
