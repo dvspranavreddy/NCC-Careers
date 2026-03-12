@@ -101,10 +101,10 @@ Below are screenshots demonstrating the interface and the application flow:
 ### 1. Application applied
 <img src = "./gmailapplication.jpeg" witdth="500" height="600">
 
-### 2. Application shortlisted
+### 2. Total gmails
 <img src = "./IMG_4033.png" witdth="500" height="600">
 
-### 3. Total gmails 
+### 3. Application Shortlisted
 <img src = "./gmail-shortlist&accepted.jpeg" witdth="500" height="600">
 
 ### 4. admin managing job
